@@ -8,12 +8,20 @@ public class CaixaEletronicoTeste {
 
 	@Test
 	public void deveLogarComSucesso() {
+		String conta = "10010-1";
 		HardwareMock hardware = new HardwareMock();
 		CaixaEletronico caixa = new CaixaEletronico(hardware);
-		assertEquals("10010-1",hardware.pegarNumeroDaContaCartao());
-		assertEquals("Usuário Autenticado", caixa.logar());
+		assertEquals(conta,hardware.pegarNumeroDaContaCartao());
+		assertEquals("Usuário Autenticado", caixa.logar(conta));
 	}
 
 	
-	
+	@Test
+	public void deveLogarComFalha() {
+		String conta = "10010-2";
+		HardwareMock hardware = new HardwareMock();
+		CaixaEletronico caixa = new CaixaEletronico(hardware);
+		assertNotEquals(conta,hardware.pegarNumeroDaContaCartao());
+		assertEquals("Não foi possível autenticar o usuário", caixa.logar(conta));
+	}
 }

@@ -6,8 +6,11 @@ public class CaixaEletronico {
         this.hardware = hardware;
        
     }
-	public String logar(){
+	public String logar(String conta){
 		  String numeroConta = hardware.pegarNumeroDaContaCartao();
- 		  return "Usuário Autenticado";
+		  if (numeroConta == conta) {
+			  return "Usuário Autenticado";
+	        }
+ 		  return "Não foi possível autenticar o usuário";
 	  }
 }
