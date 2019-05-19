@@ -15,5 +15,11 @@ public class HardwareMock implements Hardware {
 				throw new HardwareException();
 	        return numeroDaContaRetorno;
 	    }
+ 	    
+ 	   public void entregarDinheiro() throws HardwareException{
+	        if(falharHardware)
+				throw new HardwareException();
+	        
+	    }
 
 }

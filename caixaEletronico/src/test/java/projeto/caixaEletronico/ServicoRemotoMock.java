@@ -15,5 +15,9 @@ public class ServicoRemotoMock implements ServicoRemoto {
 
         return null;
     }
+    
+    public void persistirConta(ContaCorrente contaCorrente) {
+    	
+    }
 
 }

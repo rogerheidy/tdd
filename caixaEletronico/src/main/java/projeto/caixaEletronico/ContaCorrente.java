@@ -8,6 +8,11 @@ public class ContaCorrente {
 		this.numeroConta = numeroConta;
 		this.saldo = saldo;
 	}
+	
+	 public boolean sacar(double valorASacar) {
+	       this.saldo = this.saldo - valorASacar;
+	        return true;
+	 }
 
 	public String getNumConta() {
 		return this.numeroConta;

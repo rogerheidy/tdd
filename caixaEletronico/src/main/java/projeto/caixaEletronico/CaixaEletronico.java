@@ -23,10 +23,18 @@ public class CaixaEletronico {
 				return "O saldo é R$" + contaCorrente.getSaldo();
 			return "Conta não encontrada";
 		}
-	public Object sacar(String numConta, int i) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
+	public String sacar(String conta, double valor) throws HardwareException {
+        contaCorrente = servicoRemoto.recuperarConta(conta);
+        if (contaCorrente == null) {
+           	return "Conta não encontrada";
+        }
+        if((contaCorrente.getSaldo() - valor) >= 0) {
+            contaCorrente.sacar(valor);
+        	servicoRemoto.persistirConta(contaCorrente);
+            hardware.entregarDinheiro();
+            return "Retire seu dinheiro";
+        }
+        return "Saldo insuficiente";
+    }
 	
 }

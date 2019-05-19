@@ -53,7 +53,7 @@ public class CaixaEletronicoTeste {
 	}
 	
 	@Test
-	public void deveSacarSucesso(){
+	public void deveSacar() throws HardwareException{
 		assertEquals(caixa.sacar(conta.getNumConta(), 100), "Retire seu dinheiro");
 	}
 }
