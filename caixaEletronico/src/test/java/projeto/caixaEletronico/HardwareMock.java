@@ -16,9 +16,4 @@ public class HardwareMock implements Hardware {
 	        return numeroDaContaRetorno;
 	    }
 
-
- 	   public boolean lancarExceptionQuandoChamar() {
- 	        return true;
- 	    }
-
 }

@@ -2,40 +2,58 @@ package projeto.caixaEletronico;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class CaixaEletronicoTeste {
+	HardwareMock hardware;
+	ServicoRemotoMock servico;
+	CaixaEletronico caixa;
+	ContaCorrente conta, contaErrada;
+	
+	@Before
+	public void inicializa() {
+		hardware = new HardwareMock();
+		servico = new ServicoRemotoMock();
+		caixa = new CaixaEletronico(hardware, servico);
+		conta = new ContaCorrente("10010-1", 1000);
+		contaErrada = new ContaCorrente("10010-2", 4000);
+		
+	}
+
 
 	@Test
 	public void deveLogarComSucesso() throws HardwareException {
-		String conta = "10010-1";
-		HardwareMock hardware = new HardwareMock();
-		CaixaEletronico caixa = new CaixaEletronico(hardware);
-		assertEquals(conta,hardware.pegarNumeroDaContaCartao());
-		assertEquals("Usuário Autenticado", caixa.logar(conta));
+		
+		assertEquals(conta.getNumConta(),hardware.pegarNumeroDaContaCartao());
+		assertEquals("Usuário Autenticado", caixa.logar(conta.getNumConta()));
 	}
 
 	
 	@Test
 	public void deveLogarComFalha() throws HardwareException {
-		String conta = "10010-2";
-		HardwareMock hardware = new HardwareMock();
-		CaixaEletronico caixa = new CaixaEletronico(hardware);
-		assertNotEquals(conta,hardware.pegarNumeroDaContaCartao());
-		assertEquals("Não foi possível autenticar o usuário", caixa.logar(conta));
+		assertNotEquals(contaErrada.getNumConta(),hardware.pegarNumeroDaContaCartao());
+		assertEquals("Não foi possível autenticar o usuário", caixa.logar(contaErrada.getNumConta()));
 	}
 
 	@Test
 	public void deveFalharHardware() throws HardwareException {
-		String conta = "10010-2";
-		HardwareMock hardware = new HardwareMock();
-		CaixaEletronico caixa = new CaixaEletronico(hardware);
 		assertTrue(hardware.isFalharHardware());
 		
 		}
 	
 	@Test
-	public void deveMostrarSaldo(){
-		assertEquals("O saldo é R$1000,00", caixa.saldo());
+	public void deveMostrarSaldo()throws HardwareException {
+		assertEquals("O saldo é R$1000.0", caixa.saldo(conta.getNumConta()));
+	}
+	
+	@Test
+	public void contaNaoEncontrada()throws HardwareException {
+		assertEquals("Conta não encontrada", caixa.saldo(contaErrada.getNumConta()));
+	}
+	
+	@Test
+	public void deveSacarSucesso(){
+		assertEquals(caixa.sacar(conta.getNumConta(), 100), "Retire seu dinheiro");
 	}
 }
