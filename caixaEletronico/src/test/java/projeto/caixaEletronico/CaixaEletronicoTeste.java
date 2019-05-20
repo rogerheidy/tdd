@@ -62,5 +62,10 @@ public class CaixaEletronicoTeste {
 		assertEquals(caixa.sacar(conta.getNumConta(), 2000), "Saldo insuficiente");
 	}
 	
+	@Test
+	public void depositar()throws HardwareException{
+		assertEquals(caixa.depositar(conta.getNumConta(), 100), "Depósito recebido com sucesso");
+	}
+	
 
 }
