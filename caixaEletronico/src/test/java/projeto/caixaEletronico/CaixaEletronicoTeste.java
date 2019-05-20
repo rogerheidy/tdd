@@ -56,4 +56,11 @@ public class CaixaEletronicoTeste {
 	public void deveSacar() throws HardwareException{
 		assertEquals(caixa.sacar(conta.getNumConta(), 100), "Retire seu dinheiro");
 	}
+	
+	@Test
+	public void saldoInsuficiente() throws HardwareException{
+		assertEquals(caixa.sacar(conta.getNumConta(), 2000), "Saldo insuficiente");
+	}
+	
+
 }

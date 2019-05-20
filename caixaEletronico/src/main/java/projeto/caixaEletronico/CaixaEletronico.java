@@ -36,5 +36,9 @@ public class CaixaEletronico {
         }
         return "Saldo insuficiente";
     }
+	public Object depositar(String numConta, int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
