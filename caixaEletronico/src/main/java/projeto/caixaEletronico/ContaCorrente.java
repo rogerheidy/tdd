@@ -9,9 +9,8 @@ public class ContaCorrente {
 		this.saldo = saldo;
 	}
 	
-	 public boolean sacar(double valorASacar) {
+	 public void sacar(double valorASacar) {
 	       this.saldo = this.saldo - valorASacar;
-	        return true;
 	 }
 
 	public String getNumConta() {
@@ -24,6 +23,11 @@ public class ContaCorrente {
 
 	public void setSaldo(double saldo) {
 		this.saldo = saldo;
+		
+	}
+
+	public void depositar(double valorDeposito) {
+		this.saldo = this.saldo + valorDeposito;
 		
 	}
 }

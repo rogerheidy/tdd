@@ -5,4 +5,6 @@ public interface Hardware {
 
 	public void entregarDinheiro()throws HardwareException;
 
+	public void lerEnvelope()throws HardwareException;
+
 }

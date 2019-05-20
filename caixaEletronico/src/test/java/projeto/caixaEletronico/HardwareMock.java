@@ -21,5 +21,11 @@ public class HardwareMock implements Hardware {
 				throw new HardwareException();
 	        
 	    }
+ 	  public void lerEnvelope() throws HardwareException{
+ 	
+ 		  if(falharHardware)
+				throw new HardwareException();
+ 		  	
+ 	  }
 
 }

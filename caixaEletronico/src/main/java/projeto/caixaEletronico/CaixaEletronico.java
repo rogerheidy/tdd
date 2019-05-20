@@ -30,15 +30,25 @@ public class CaixaEletronico {
         }
         if((contaCorrente.getSaldo() - valor) >= 0) {
             contaCorrente.sacar(valor);
-        	servicoRemoto.persistirConta(contaCorrente);
-            hardware.entregarDinheiro();
+        	hardware.entregarDinheiro();
+            servicoRemoto.persistirConta(contaCorrente);
             return "Retire seu dinheiro";
+      
         }
         return "Saldo insuficiente";
     }
-	public Object depositar(String numConta, int i) {
-		// TODO Auto-generated method stub
-		return null;
+	public String depositar(String conta, double valor) throws HardwareException {
+		contaCorrente = servicoRemoto.recuperarConta(conta);
+        if (contaCorrente == null) {
+           	return "Conta não encontrada";
+        }
+        contaCorrente.depositar(valor);
+        
+        hardware.lerEnvelope();
+        servicoRemoto.persistirConta(contaCorrente);
+        return "Depósito recebido com sucesso";
+        
+        
 	}
 	
 }
