@@ -50,17 +50,17 @@ public class CaixaEletronicoTeste {
 	
 	@Test
 	public void deveSacar() {
-		assertEquals(caixa.sacar(conta.getNumConta(), 100), "Retire seu dinheiro");
+		assertEquals("Retire seu dinheiro", caixa.sacar(conta.getNumConta(), 100));
 	}
 	
 	@Test
 	public void saldoInsuficiente() {
-		assertEquals(caixa.sacar(conta.getNumConta(), 2000), "Saldo insuficiente");
+		assertEquals("Saldo insuficiente", caixa.sacar(conta.getNumConta(), 2000));
 	}
 	
 	@Test
 	public void depositar() {
-		assertEquals(caixa.depositar(conta.getNumConta(), 100), "Depósito recebido com sucesso");
+		assertEquals("Depósito recebido com sucesso", caixa.depositar(conta.getNumConta(), 100));
 	}
 	
 
