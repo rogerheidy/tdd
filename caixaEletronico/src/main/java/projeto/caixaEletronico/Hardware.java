@@ -1,10 +1,10 @@
 package projeto.caixaEletronico;
 
 public interface Hardware {
-	public String pegarNumeroDaContaCartao()throws HardwareException;
+	public String pegarNumeroDaContaCartao();
 
-	public void entregarDinheiro()throws HardwareException;
+	public void entregarDinheiro();
 
-	public void lerEnvelope()throws HardwareException;
+	public void lerEnvelope();
 
 }

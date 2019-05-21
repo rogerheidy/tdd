@@ -23,47 +23,43 @@ public class CaixaEletronicoTeste {
 
 
 	@Test
-	public void deveLogarComSucesso() throws HardwareException {
-		
-		assertEquals(conta.getNumConta(),hardware.pegarNumeroDaContaCartao());
-		assertEquals("Usuário Autenticado", caixa.logar(conta.getNumConta()));
+	public void deveLogarComSucesso()  {
+		assertEquals("Usuário Autenticado", caixa.logar());
+		assertTrue(hardware.chamouPegarNumeroDaContaCartao);
 	}
 
 	
 	@Test
-	public void deveLogarComFalha() throws HardwareException {
-		assertNotEquals(contaErrada.getNumConta(),hardware.pegarNumeroDaContaCartao());
-		assertEquals("Não foi possível autenticar o usuário", caixa.logar(contaErrada.getNumConta()));
-	}
-
-	@Test
-	public void deveFalharHardware() throws HardwareException {
+	public void deveLogarComFalha()  {
+		hardware.isFalharHardware();
 		assertTrue(hardware.isFalharHardware());
-		
-		}
-	
+		assertEquals("Não foi possível autenticar o usuário", caixa.logar());
+		assertTrue(hardware.chamouPegarNumeroDaContaCartao);
+	}
+
+
 	@Test
-	public void deveMostrarSaldo()throws HardwareException {
+	public void deveMostrarSaldo() {
 		assertEquals("O saldo é R$1000.0", caixa.saldo(conta.getNumConta()));
 	}
 	
 	@Test
-	public void contaNaoEncontrada()throws HardwareException {
+	public void contaNaoEncontrada() {
 		assertEquals("Conta não encontrada", caixa.saldo(contaErrada.getNumConta()));
 	}
 	
 	@Test
-	public void deveSacar() throws HardwareException{
+	public void deveSacar() {
 		assertEquals(caixa.sacar(conta.getNumConta(), 100), "Retire seu dinheiro");
 	}
 	
 	@Test
-	public void saldoInsuficiente() throws HardwareException{
+	public void saldoInsuficiente() {
 		assertEquals(caixa.sacar(conta.getNumConta(), 2000), "Saldo insuficiente");
 	}
 	
 	@Test
-	public void depositar()throws HardwareException{
+	public void depositar() {
 		assertEquals(caixa.depositar(conta.getNumConta(), 100), "Depósito recebido com sucesso");
 	}
 	
