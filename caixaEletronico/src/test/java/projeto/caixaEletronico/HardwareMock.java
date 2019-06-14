@@ -4,27 +4,25 @@ public class HardwareMock implements Hardware {
 
     private String numeroDaContaRetorno = "10010-1";
     private boolean falharHardware = false;
+	public boolean chamouPegarNumeroDaContaCartao = false;
 		
 	public boolean isFalharHardware() {
 		falharHardware = true;
 		return falharHardware;
 	}
 
- 	    public String pegarNumeroDaContaCartao() throws HardwareException{
-	        if(falharHardware)
-				throw new HardwareException();
-	        return numeroDaContaRetorno;
-	    }
+ 	    public String pegarNumeroDaContaCartao() {
+	    	chamouPegarNumeroDaContaCartao = true;
+ 			if (falharHardware) throw new RuntimeException();
+ 			return numeroDaContaRetorno;
+ 	    }
  	    
- 	   public void entregarDinheiro() throws HardwareException{
-	        if(falharHardware)
-				throw new HardwareException();
+ 	   public void entregarDinheiro(){
+ 		  if (falharHardware) throw new RuntimeException();
 	        
 	    }
- 	  public void lerEnvelope() throws HardwareException{
- 	
- 		  if(falharHardware)
-				throw new HardwareException();
+ 	  public void lerEnvelope(){
+ 	 		 if (falharHardware) throw new RuntimeException();
  		  	
  	  }
 

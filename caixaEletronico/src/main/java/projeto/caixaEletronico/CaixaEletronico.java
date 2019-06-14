@@ -10,20 +10,22 @@ public class CaixaEletronico {
         this.servicoRemoto = servico;
        
     }
-	public String logar(String conta) throws HardwareException{
-		  String numeroConta = hardware.pegarNumeroDaContaCartao();
-		  if (numeroConta == conta) {
-			  return "Usuário Autenticado";
-	        }
- 		  return "Não foi possível autenticar o usuário";
-	  }
-	public String saldo(String conta) throws HardwareException{
+
+	public String logar() {
+		try {
+			String numeroConta = hardware.pegarNumeroDaContaCartao();
+			return "Usuário Autenticado";
+		} catch(Exception e) {
+			return "Não foi possível autenticar o usuário";
+		}
+}
+	public String saldo(String conta) {
 		contaCorrente = servicoRemoto.recuperarConta(conta);
 			if(contaCorrente != null)
 				return "O saldo é R$" + contaCorrente.getSaldo();
 			return "Conta não encontrada";
 		}
-	public String sacar(String conta, double valor) throws HardwareException {
+	public String sacar(String conta, double valor) {
         contaCorrente = servicoRemoto.recuperarConta(conta);
         if (contaCorrente == null) {
            	return "Conta não encontrada";
@@ -37,7 +39,7 @@ public class CaixaEletronico {
         }
         return "Saldo insuficiente";
     }
-	public String depositar(String conta, double valor) throws HardwareException {
+	public String depositar(String conta, double valor) {
 		contaCorrente = servicoRemoto.recuperarConta(conta);
         if (contaCorrente == null) {
            	return "Conta não encontrada";
