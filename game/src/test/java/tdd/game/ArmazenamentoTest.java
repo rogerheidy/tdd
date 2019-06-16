@@ -1,4 +1,4 @@
-package roger.game;
+package tdd.game;
 
 import static org.junit.Assert.assertTrue;
 

@@ -1,15 +1,16 @@
-package roger.game;
+package tdd.game;
 
-public class ArmazenamentoMock {
+public class ArmazenamentoMock implements ArmazenadorPontos {
 
-	public void adicionaPontosUsuario(String string, String string2, int i) {
-		// TODO Auto-generated method stub
-		
-	}
+	 private String nomeUsuarioArmazenado;
+	 private String tipoPontuacaoArmazenada;
+	 private int quantidadePontuacaoArmazenada;
 
-	public Object getQuantidadeTipo(String string, String string2) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+	public void adicionaPontosUsuario(String nomeUsuario, String tipoPontuacao, int quantidadePontuacao) {
+        this.nomeUsuarioArmazenado = nomeUsuario;
+        this.tipoPontuacaoArmazenada = tipoPontuacao;
+        this.quantidadePontuacaoArmazenada = quantidadePontuacao;
+    }
 
 }

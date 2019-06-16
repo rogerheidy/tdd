@@ -1,14 +1,13 @@
-package roger.game;
+package tdd.game;
 
 public class Placar {
+	 private ArmazenadorPontos armazenamento;
+	 public Placar(ArmazenadorPontos armazenamento) {
+	        this.armazenamento = armazenamento;
+	    }
 
-	public Placar(ArmazenamentoMock armazenamentoMock) {
-		// TODO Auto-generated constructor stub
-	}
-
-	public void adicionaPontosUsuario(String string, String string2, int i) {
-		// TODO Auto-generated method stub
-		
-	}
+	    public void adicionaPontosUsuario(String nomeUsuario, String tipoPontuacao, int quantidadePontuacao) {
+	        this.armazenamento.adicionaPontosUsuario(nomeUsuario, tipoPontuacao, quantidadePontuacao);
+	    }
 
 }

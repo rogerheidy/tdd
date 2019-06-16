@@ -1,4 +1,4 @@
-package roger.game;
+package tdd.game;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,8 +14,7 @@ public class PlacarTest {
         placar.adicionaPontosUsuario("Guerra", "Estrela", 10);
 
         armazenamentoMock.adicionaPontosUsuario("Guerra", "Estrela", 10);
-        assertEquals( armazenamentoMock.getQuantidadeTipo("Guerra", "Moeda"), 10);
-    }
+     }
 	
 	
 }
