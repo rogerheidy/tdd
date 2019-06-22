@@ -4,12 +4,18 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Arquivo {
 	private Path arquivo;
+	
+	public Arquivo(String nomeArquivo) {
+		this.arquivo = Paths.get(nomeArquivo + ".txt");
+	}
 
 	public void armazenarPontuacao(Usuario usuario) {
 		try {
@@ -63,4 +69,47 @@ public class Arquivo {
 		return registro.split(":");
 	}
 	
+	public Usuario recuperarUsuario(String nomeUsuario) {
+		List<Usuario> usuarios = this.recuperarUsuarios();
+		for (Usuario u : usuarios) {
+			if (u.getNome().equalsIgnoreCase(nomeUsuario)) return u;
+		}
+		return new Usuario(nomeUsuario);
+	}
+	public List<Usuario> recuperarUsuarios() {
+		List<Usuario> usuarios = new ArrayList<>();
+		if (Files.exists(arquivo)) {
+			try {
+				List<String> pontosUsuario = Files.lines(arquivo, StandardCharsets.UTF_8).collect(Collectors.toList());
+				for (String registro : pontosUsuario) {				
+					usuarios.add(criarUsuario(extrairUsuario(registro), separarTipo(registro)));
+				}
+			} catch (IOException e) {
+			
+			}
+		}
+		return usuarios;
+	}
+
+	private Usuario criarUsuario(String nomeUsuario, String[] pontuacaoPorTipo) {
+		Usuario usuario = new Usuario(nomeUsuario);
+		for (String item : pontuacaoPorTipo) {
+			String tipoPonto = recuperarTipoPonto(item);
+			Integer quantidadePontos = recuperarQuantidade(item);
+			usuario.adicionarPontos(tipoPonto, quantidadePontos);
+		}
+		return usuario;
+	}
+
+	private String[] separarTipo(String registro) {
+		return registro.split(";");
+	}
+	
+	private String recuperarTipoPonto(String tipoPontoQuantidade) {
+		return tipoPontoQuantidade.split(";")[0];
+	}
+	
+	private Integer recuperarQuantidade(String tipoPontoQuantidade) {
+		return Integer.valueOf(tipoPontoQuantidade.split("=")[1]);
+	}
 }

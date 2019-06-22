@@ -16,21 +16,9 @@ public class PlacarTest {
         Placar placar = new Placar(armazenamentoMock);
 
         placar.adicionaPontosUsuario("Guerra", "Estrela", 10);
-        assertEquals(10, armazenamentoMock.recuperarPontuacaoUsuario("Guerra", "Estrela"));
+       }
     
-    }
-    
-    //   @Test
-    //   public void pontosPorUsuario() {
-    //       ArmazenamentoMock armazenamentoMock = new ArmazenamentoMock();
-    ////       Placar placar = new Placar(armazenamentoMock);
-    //        Set<Ponto> pontosDoGuerra = new HashSet<>(Arrays.asList(new Ponto("estrela", 1)));
-  //      armazenamentoMock.quandoChamarPontosPorUsuarioCom("Guerra").retornar(pontosDoGuerra);
 
-    //    Set<Ponto> resultado = placar.pontosPorUsuario("Guerra");
-
-    //      assertEquals(pontosDoGuerra, resultado);
-    //  }
     
     
 	
