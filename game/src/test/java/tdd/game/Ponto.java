@@ -25,4 +25,9 @@ public class Ponto {
     public void adicionaPontos(int quantidade) {
         this.quantidade += quantidade;
     }
+
+	public void put(String tipoPontuacao, int i) {
+		// TODO Auto-generated method stub
+		
+	}
 }

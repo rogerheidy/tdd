@@ -1,37 +1,29 @@
 package tdd.game;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
-public class ArmazenamentoMock implements ArmazenadorPontos {
-
-	   private String nomeUsuarioArmazenado;
-	   private String tipoPontuacaoArmazenada;
-	   private int quantidadePontuacaoArmazenada;
-
-	   private String argumentoPontosPorUsuario;
-	   private Set<Ponto> retornoPontosPorUsuario;
+public class ArmazenamentoMock  implements Armazenamento {
+	Map<String, Usuario> usuarios = new HashMap<>();  	
 	
-	public void adicionaPontosUsuario(String nomeUsuario, String tipoPontuacao, int quantidadePontuacao) {
-        this.nomeUsuarioArmazenado = nomeUsuario;
-        this.tipoPontuacaoArmazenada = tipoPontuacao;
-        this.quantidadePontuacaoArmazenada = quantidadePontuacao;
-    }
+	public Integer recuperarPontuacaoUsuario(String tipoPonto, String nomeUsuario) {
+		Usuario usuario = this.usuarios.get(nomeUsuario);
+		if (null != usuario && null != usuario.getPontuacao()) {
+			return usuario.getPontuacao().getPontos(tipoPonto);
+		}
+		return 0;
+	}
+
 	@Override
-    public Set<Ponto> pontosPorUsuario(String nomeUsuario) {
-        if (nomeUsuario.equals(argumentoPontosPorUsuario)) {
-            return retornoPontosPorUsuario;
-        }
+	public void armazenarPontuacao(Usuario usuario) {
+		this.usuarios.put(usuario.getNome(), usuario);
+		
+	}
 
-        return null;
-    }
-
-	public ArmazenamentoMock quandoChamarPontosPorUsuarioCom(String nomeUsuario) {
-        this.argumentoPontosPorUsuario = nomeUsuario;
-
-        return this;
-    }
-	public void retornar(Set<Ponto> pontos) {
-        this.retornoPontosPorUsuario = pontos;
-    }
-
+	@Override
+	public Usuario recuperarUsuario(String nomeUsuario) {
+		return this.usuarios.getOrDefault(nomeUsuario, new Usuario(nomeUsuario));
+	}
 }

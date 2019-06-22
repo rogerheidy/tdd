@@ -1,10 +1,10 @@
 package tdd.game;
 
-public class Armazenamento {
 
-	public boolean adicionaPontosUsuario(String usuario, int ponto, String tipo) {
-		
-		return true;
-	}
+public interface Armazenamento {
+
+	public void armazenarPontuacao(Usuario usuario);
+
+	public Usuario recuperarUsuario(String nomeUsuario);
 
 }

@@ -4,21 +4,19 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Placar {
-	 private ArmazenadorPontos armazenamento;
-	 public Placar(ArmazenadorPontos armazenamento) {
+	 private Armazenamento armazenamento;
+	 public Placar(Armazenamento armazenamento) {
 	        this.armazenamento = armazenamento;
 	    }
 
 	    public void adicionaPontosUsuario(String nomeUsuario, String tipoPontuacao, int quantidadePontuacao) {
-	        this.armazenamento.adicionaPontosUsuario(nomeUsuario, tipoPontuacao, quantidadePontuacao);
+	    	Usuario usuario = armazenamento.recuperarUsuario(nomeUsuario);
+	    	usuario.adicionarPontos(tipoPontuacao, quantidadePontuacao);
+	    	armazenamento.armazenarPontuacao(usuario);
 	    }
 
 
-		public Set<Ponto> pontosPorUsuario(String nomeUsuario) {
-	        return armazenamento.pontosPorUsuario(nomeUsuario).stream()
-	                .filter(ponto -> ponto.getQuantidade() > 0)
-	                .collect(Collectors.toSet());
-	    }
+		
 		
 
 }
