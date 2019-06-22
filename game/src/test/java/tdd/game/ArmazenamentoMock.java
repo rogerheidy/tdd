@@ -1,9 +1,7 @@
 package tdd.game;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class ArmazenamentoMock  implements Armazenamento {
 	Map<String, Usuario> usuarios = new HashMap<>();  	

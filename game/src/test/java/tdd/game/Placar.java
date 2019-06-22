@@ -1,8 +1,5 @@
 package tdd.game;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-
 public class Placar {
 	 private Armazenamento armazenamento;
 	 public Placar(Armazenamento armazenamento) {

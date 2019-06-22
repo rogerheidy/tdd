@@ -2,10 +2,6 @@ package tdd.game;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
 import org.junit.Test;
 
 public class PlacarTest {
@@ -16,6 +12,8 @@ public class PlacarTest {
         Placar placar = new Placar(armazenamentoMock);
 
         placar.adicionaPontosUsuario("Guerra", "Estrela", 10);
+        Integer valor = 10;
+        assertEquals(valor, armazenamentoMock.recuperarPontuacaoUsuario("Estrela", "Guerra"));
        }
     
 
