@@ -48,6 +48,7 @@ public class PlacarTest {
         placar.adicionaPontosUsuario("Ares", "Estrela", 30);
         placar.adicionaPontosUsuario("Ares", "Topico", 1);
         placar.adicionaPontosUsuario("War", "Estrela", 13);
+        placar.adicionaPontosUsuario("Toco", "Estrela", 0);
 		Map<String, Integer> ranking = placar.recuperarRanking("Estrela");
 		
 		List<String> 	rankingUsuario 		= new ArrayList<String>(ranking.keySet());

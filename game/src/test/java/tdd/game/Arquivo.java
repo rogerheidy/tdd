@@ -85,7 +85,7 @@ public class Arquivo {
 					usuarios.add(criarUsuario(extrairUsuario(registro), separarTipo(registro)));
 				}
 			} catch (IOException e) {
-			
+				
 			}
 		}
 		return usuarios;
@@ -102,14 +102,29 @@ public class Arquivo {
 	}
 
 	private String[] separarTipo(String registro) {
-		return registro.split(";");
+		return extrairTodasPontuacoes(registro).split(";");
 	}
 	
 	private String recuperarTipoPonto(String tipoPonto) {
-		return tipoPonto.split(";")[0];
+		return tipoPonto.split("=")[0];
 	}
 	
 	private Integer recuperarQuantidade(String quantidadePontos) {
-		return Integer.valueOf(quantidadePontos);
+		return Integer.valueOf(quantidadePontos.split("=")[1]);
+	}
+
+	public Integer recuperarPontos(String tipoPonto, String nomeUsuario) {
+		Usuario usuario = this.recuperarUsuario(nomeUsuario);
+		return usuario.getPontos(tipoPonto);
+	}
+
+	private String extrairTodasPontuacoes(String registro) {
+		try {
+			return separarUsuarioDePontuacao(registro)[1];
+		} catch (Exception e) {
+			throw e;
+			
+		}
+		
 	}
 }
