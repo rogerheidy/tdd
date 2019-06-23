@@ -1,6 +1,8 @@
 package tdd.game;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ArmazenamentoMock  implements Armazenamento {
@@ -24,4 +26,16 @@ public class ArmazenamentoMock  implements Armazenamento {
 	public Usuario recuperarUsuario(String nomeUsuario) {
 		return this.usuarios.getOrDefault(nomeUsuario, new Usuario(nomeUsuario));
 	}
+	
+	@Override
+	public Integer recuperarPontos(String tipoPonto, String nomeUsuario) {
+		return null;
+	}
+	
+	@Override
+	public List<Usuario> recuperarUsuarios() {
+		return new ArrayList<Usuario>(this.usuarios.values());
+	}
+
+
 }

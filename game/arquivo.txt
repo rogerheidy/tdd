@@ -11,3 +11,6 @@ tdd.game.Usuario@5fa7e7ff
 tdd.game.Usuario@5fa7e7ff
 tdd.game.Usuario@5fa7e7ff
 tdd.game.Usuario@762efe5d
+tdd.game.Usuario@65ae6ba4
+tdd.game.Usuario@65ae6ba4
+tdd.game.Usuario@3fb4f649
