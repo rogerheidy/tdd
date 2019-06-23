@@ -12,6 +12,11 @@ public class Placar {
 	    	armazenamento.armazenarPontuacao(usuario);
 	    }
 
+		public Pontuacao recuperarPontuacaoUsuario(String nome) {
+			Usuario usuario = armazenamento.recuperarUsuario(nome);
+			return usuario.getPontuacao();
+		}
+
 
 		
 		

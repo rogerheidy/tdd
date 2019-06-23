@@ -19,8 +19,8 @@ public class ArmazenamentoTest {
 		arquivo.armazenarPontuacao(usuario);
 		Path nomeArquivo = Paths.get("arquivo.txt");
 		
-		assertEquals(usuario.toString(), (arquivo.recuperarUsuario("Guerra").toString()));
 		assertTrue(Files.exists(nomeArquivo));
+		
 	}
 
 	

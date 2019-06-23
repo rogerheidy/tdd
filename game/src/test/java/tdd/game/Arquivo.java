@@ -71,8 +71,8 @@ public class Arquivo {
 	
 	public Usuario recuperarUsuario(String nomeUsuario) {
 		List<Usuario> usuarios = this.recuperarUsuarios();
-		for (Usuario u : usuarios) {
-			if (u.getNome().equalsIgnoreCase(nomeUsuario)) return u;
+		for (Usuario usuario : usuarios) {
+			if (usuario.getNome().equalsIgnoreCase(nomeUsuario)) return usuario;
 		}
 		return new Usuario(nomeUsuario);
 	}
@@ -105,11 +105,11 @@ public class Arquivo {
 		return registro.split(";");
 	}
 	
-	private String recuperarTipoPonto(String tipoPontoQuantidade) {
-		return tipoPontoQuantidade.split(";")[0];
+	private String recuperarTipoPonto(String tipoPonto) {
+		return tipoPonto.split(";")[0];
 	}
 	
-	private Integer recuperarQuantidade(String tipoPontoQuantidade) {
-		return Integer.valueOf(tipoPontoQuantidade.split("=")[1]);
+	private Integer recuperarQuantidade(String quantidadePontos) {
+		return Integer.valueOf(quantidadePontos);
 	}
 }
