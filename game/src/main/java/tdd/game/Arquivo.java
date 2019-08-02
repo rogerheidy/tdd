@@ -11,6 +11,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Arquivo {
+	public static final String IGUAL = "=";
+	public static final String DOIS_PONTOS = ":";
+	public static final String PONTO_VIRGULA = ";";
+	
 	private Path arquivo;
 	
 	public Arquivo(String nomeArquivo) {
@@ -66,7 +70,7 @@ public class Arquivo {
 	}
 	
 	private String[] separarUsuarioDePontuacao(String registro) {
-		return registro.split(":");
+		return registro.split(DOIS_PONTOS);
 	}
 	
 	public Usuario recuperarUsuario(String nomeUsuario) {
@@ -102,15 +106,15 @@ public class Arquivo {
 	}
 
 	private String[] separarTipo(String registro) {
-		return extrairTodasPontuacoes(registro).split(";");
+		return extrairTodasPontuacoes(registro).split(PONTO_VIRGULA);
 	}
 	
 	private String recuperarTipoPonto(String tipoPonto) {
-		return tipoPonto.split("=")[0];
+		return tipoPonto.split(IGUAL)[0];
 	}
 	
 	private Integer recuperarQuantidade(String quantidadePontos) {
-		return Integer.valueOf(quantidadePontos.split("=")[1]);
+		return Integer.valueOf(quantidadePontos.split(IGUAL)[1]);
 	}
 
 	public Integer recuperarPontos(String tipoPonto, String nomeUsuario) {
