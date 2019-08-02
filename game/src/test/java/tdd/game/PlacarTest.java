@@ -13,44 +13,40 @@ import org.junit.Test;
 public class PlacarTest {
 	ArmazenamentoMock armazenamentoMock;
 	Placar placar;
+	Pontuacao pontuacaoEsperada;
+	Pontuacao pontuacaoAtual;
 
 	@Before
 	public void iniciar() {
 		 armazenamentoMock = new ArmazenamentoMock();
 		 placar = new Placar(armazenamentoMock);
+		 pontuacaoEsperada = new Pontuacao();
+		 placar.adicionaPontosUsuario("Guerra", "Estrela", 10);
+	     placar.adicionaPontosUsuario("Guerra", "Topico", 5);
+	     placar.adicionaPontosUsuario("Guerra", "Moeda", 20);
+	     placar.adicionaPontosUsuario("Ares", "Estrela", 30);
+	     placar.adicionaPontosUsuario("Ares", "Topico", 1);
+	     placar.adicionaPontosUsuario("War", "Estrela", 13);
+	     placar.adicionaPontosUsuario("Toco", "Estrela", 0);
 	}
 	
     @Test
     public void deveArmazenarPontosParaUmUsuario() {
-        placar.adicionaPontosUsuario("Guerra", "Estrela", 10);
         Integer valor = 10;
         assertEquals(valor, armazenamentoMock.recuperarPontuacaoUsuario("Estrela", "Guerra"));
     }
     
     @Test
     public void recuperarPontuacaoDoUsuario() {
-        placar.adicionaPontosUsuario("Guerra", "Estrela", 10);
-        placar.adicionaPontosUsuario("Guerra", "Topico", 10);
-        placar.adicionaPontosUsuario("Guerra", "Moeda", 10);
-			
-		Pontuacao pontuacaoEsperada = new Pontuacao();
-
-		pontuacaoEsperada.adicionarPontos("Topico", 10);
-		pontuacaoEsperada.adicionarPontos("Moeda", 10);
+    	pontuacaoEsperada.adicionarPontos("Topico", 5);
+		pontuacaoEsperada.adicionarPontos("Moeda", 20);
 		
-		Pontuacao pontuacaoAtual = placar.recuperarPontuacaoUsuario("Guerra");
+	    pontuacaoAtual = placar.recuperarPontuacaoUsuario("Guerra");
 		assertEquals(pontuacaoEsperada, pontuacaoAtual);
 	}
     
     @Test
     public void recuperarRanking() {
-    	placar.adicionaPontosUsuario("Guerra", "Estrela", 10);
-        placar.adicionaPontosUsuario("Guerra", "Topico", 5);
-        placar.adicionaPontosUsuario("Guerra", "Moeda", 20);
-        placar.adicionaPontosUsuario("Ares", "Estrela", 30);
-        placar.adicionaPontosUsuario("Ares", "Topico", 1);
-        placar.adicionaPontosUsuario("War", "Estrela", 13);
-        placar.adicionaPontosUsuario("Toco", "Estrela", 0);
 		Map<String, Integer> ranking = placar.recuperarRanking("Estrela");
 		
 		List<String> 	rankingUsuario 		= new ArrayList<String>(ranking.keySet());
