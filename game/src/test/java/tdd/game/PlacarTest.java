@@ -7,24 +7,28 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class PlacarTest {
+	ArmazenamentoMock armazenamentoMock;
+	Placar placar;
 
+	@Before
+	public void iniciar() {
+		 armazenamentoMock = new ArmazenamentoMock();
+		 placar = new Placar(armazenamentoMock);
+	}
+	
     @Test
     public void deveArmazenarPontosParaUmUsuario() {
-        ArmazenamentoMock armazenamentoMock = new ArmazenamentoMock();
-        Placar placar = new Placar(armazenamentoMock);
-
         placar.adicionaPontosUsuario("Guerra", "Estrela", 10);
         Integer valor = 10;
         assertEquals(valor, armazenamentoMock.recuperarPontuacaoUsuario("Estrela", "Guerra"));
-       }
+    }
     
     @Test
     public void recuperarPontuacaoDoUsuario() {
-    	ArmazenamentoMock armazenamentoMock = new ArmazenamentoMock();
-        Placar placar = new Placar(armazenamentoMock);
         placar.adicionaPontosUsuario("Guerra", "Estrela", 10);
         placar.adicionaPontosUsuario("Guerra", "Topico", 10);
         placar.adicionaPontosUsuario("Guerra", "Moeda", 10);
@@ -40,8 +44,6 @@ public class PlacarTest {
     
     @Test
     public void recuperarRanking() {
-    	ArmazenamentoMock armazenamentoMock = new ArmazenamentoMock();
-        Placar placar = new Placar(armazenamentoMock);
     	placar.adicionaPontosUsuario("Guerra", "Estrela", 10);
         placar.adicionaPontosUsuario("Guerra", "Topico", 5);
         placar.adicionaPontosUsuario("Guerra", "Moeda", 20);

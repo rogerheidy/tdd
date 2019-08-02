@@ -12,24 +12,31 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class ArmazenamentoTest {
 	private Arquivo arquivo;
+	private Usuario usuario1;
+	private Usuario usuario2;
+	
+	@Before
+	public void iniciar() {
+		usuario1 = new Usuario("Guerra");
+		usuario2 = new Usuario("War");
+		arquivo = new Arquivo("arquivo");
+	}
+
 	@Test
 	public void deveArmazenarPontosEstrelaParaUmUsuario() {
-		Usuario usuario = new Usuario("Guerra");
-		usuario.adicionarPontos("Estrela", 10);
-		arquivo = new Arquivo("arquivo");
-		arquivo.armazenarPontuacao(usuario);
+		usuario1.adicionarPontos("Estrela", 10);
+		arquivo.armazenarPontuacao(usuario1);
 		Path nomeArquivo = Paths.get("arquivo.txt");
-		
 		assertTrue(Files.exists(nomeArquivo));
-		
 	}
+	
 	@Test
 	public void deveRecuperarQuantidadeDePontosDoUsuario() throws IOException {
-		arquivo = new Arquivo("arquivo");
 		Files.write(Paths.get("arquivo.txt"), Arrays.asList("Guerra:Estrela=10;","War:Estrela=1;"), StandardCharsets.UTF_8);
 		Integer valorEsperado = 10;
 		assertEquals(arquivo.recuperarPontos("Estrela", "Guerra"), valorEsperado);
@@ -37,10 +44,7 @@ public class ArmazenamentoTest {
 	
 	@Test
 	public void deveRetornarTodosUsuariosComPontos() throws IOException {
-		arquivo = new Arquivo("arquivo");	
-		Usuario usuario1 = new Usuario("Guerra");
 		usuario1.adicionarPontos("Estrela", 7);
-		Usuario usuario2 = new Usuario("War");
 		usuario2.adicionarPontos("Estrela", 1);
 		usuario2.adicionarPontos("Moeda", 4);
 		
@@ -57,7 +61,6 @@ public class ArmazenamentoTest {
 	
 	@Test
 	public void deveRecuperarPontuacaoUsuario() throws IOException {
-		arquivo = new Arquivo("arquivo");
 		Usuario resultadoEsperado = new Usuario("War");
 		resultadoEsperado.adicionarPontos("Estrela", 1);
 		resultadoEsperado.adicionarPontos("Moeda", 4);
